@@ -17,8 +17,26 @@ Simplest example:
 The key is to return an instance of any class defined in the same API module from one of its methods.
 And as long as at least one of method parameters enables caching string call it rises compilation error:
 ```
-strexample_interfacewrapper.cpp:82:65: error: use of undeclared identifier 'CStringsExampleStringObject'
+FAILED: CMakeFiles/stringsexample.dir/Interfaces/strexample_interfacewrapper.cpp.o
+/Applications/Xcode-12.5.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -Dstringsexample_EXPORTS -I/Users/anpiloa/git/ActExamples/StringsExample_component/Implementations/Cpp/Interfaces -I/Users/anpiloa/git/ActExamples/StringsExample_component/Implementations/Cpp/Stub -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -D__STRINGSEXAMPLE_EXPORTS -std=gnu++11 -MD -MT CMakeFiles/stringsexample.dir/Interfaces/strexample_interfacewrapper.cpp.o -MF CMakeFiles/stringsexample.dir/Interfaces/strexample_interfacewrapper.cpp.o.d -o CMakeFiles/stringsexample.dir/Interfaces/strexample_interfacewrapper.cpp.o -c /Users/anpiloa/git/ActExamples/StringsExample_component/Implementations/Cpp/Interfaces/strexample_interfacewrapper.cpp
+/Users/anpiloa/git/ActExamples/StringsExample_component/Implementations/Cpp/Interfaces/strexample_interfacewrapper.cpp:82:65: error: use of undeclared identifier 'CStringsExampleStringObject'
                         pIStringObject->_setCache (new ParameterCache_2<std::string, CStringsExampleStringObject *> (sName, pBaseResult));
+                                                                                     ^
+/Users/anpiloa/git/ActExamples/StringsExample_component/Implementations/Cpp/Interfaces/strexample_interfacewrapper.cpp:82:94: error: expected expression
+                        pIStringObject->_setCache (new ParameterCache_2<std::string, CStringsExampleStringObject *> (sName, pBaseResult));
+                                                                                                                  ^
+/Users/anpiloa/git/ActExamples/StringsExample_component/Implementations/Cpp/Interfaces/strexample_interfacewrapper.cpp:85:60: error: use of undeclared identifier 'CStringsExampleStringObject'
+                        auto cache = dynamic_cast<ParameterCache_2<std::string, CStringsExampleStringObject *>*> (pIStringObject->_getCache ());
+                                                                                ^
+/Users/anpiloa/git/ActExamples/StringsExample_component/Implementations/Cpp/Interfaces/strexample_interfacewrapper.cpp:85:89: error: expected expression
+                        auto cache = dynamic_cast<ParameterCache_2<std::string, CStringsExampleStringObject *>*> (pIStringObject->_getCache ());
+                                                                                                             ^
+/Users/anpiloa/git/ActExamples/StringsExample_component/Implementations/Cpp/Interfaces/strexample_interfacewrapper.cpp:88:11: error: no member named 'retrieveData' in 'StringsExample::Impl::ParameterCache'
+                        cache->retrieveData (sName, pBaseResult);
+                        ~~~~~  ^
+5 errors generated.
+[5/6] Building CXX object CMakeFiles/stringsexample.dir/Stub/strexample_base.cpp.o
+ninja: build stopped: subcommand failed.
 ```
 
 ## Steps to reproduce the issue
